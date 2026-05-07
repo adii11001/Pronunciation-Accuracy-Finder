@@ -8,7 +8,7 @@ def normalize(word: str):
     return word.replace(" ", "").replace("̥", "")
 
 target_word = "cricket bat"
-model = read_recognizer()
+model = read_recognizer("eng2102") # More language-specific than uni2020 (default)
 expected_ipa = ipa.convert(target_word)[1:]
 actual_ipa = model.recognize('enunciation.wav')
 
