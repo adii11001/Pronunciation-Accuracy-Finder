@@ -8,9 +8,10 @@ def normalize(word: str):
     return word.replace(" ", "").replace("̥", "")
 
 target_word = "cricket bat"
-model = read_recognizer("eng2102") # More language-specific than uni2020 (default)
 expected_ipa = ipa.convert(target_word)[1:]
-actual_ipa = model.recognize('enunciation.wav')
+
+model = read_recognizer("eng2102") # More language-specific than uni2020 (default)
+actual_ipa = model.recognize('cricket_bat.wav')
 
 # Normalized ipa string
 clean_expected_ipa = normalize(expected_ipa)
@@ -30,9 +31,3 @@ accuracy_score = ((max_len - distance) / max_len) * 100
 # Hybrid score
 hybrid_score = accuracy_score * 0.4 + accuracy_score_panphon * 0.6
 final_score = hybrid_score * (min(len(clean_expected_ipa), len(clean_actual_ipa))) / max(len(clean_expected_ipa), len(clean_actual_ipa))
-
-print(f"Expected: {clean_expected_ipa}")
-print(f"Actual:   {clean_actual_ipa}")
-print(f"Levenshtein Accuracy: {accuracy_score:.2f}%")
-print(f"PanPhone Accuracy: {accuracy_score_panphon:.2f}%")
-print(f"Weighted Score: {final_score:.2f}%")
