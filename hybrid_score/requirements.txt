@@ -1,0 +1,8 @@
+eng-to-ipa
+torch~=2.5.1+cu121
+librosa~=0.11.0
+transformers~=5.9.0
+epitran~=1.35.1
+editdistance~=0.8.1
+panphon~=0.22.2
+allosaurus~=1.0.2
